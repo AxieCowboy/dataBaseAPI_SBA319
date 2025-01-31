@@ -22,4 +22,6 @@ app.get('/', (req,res) => {
 //     res.json(listings)
 // })
 
-app.listen(port)
+app.listen(port, () =>{
+    console.log('listening to port: ', port)
+})
