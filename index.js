@@ -1,15 +1,26 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import 'dotenv/config'
-// import "MODEL_NAME" from './models/xyz.js'
+import routes from "./routes/userRoutes.js"
+import dotenv from "dotenv"
 
+// Routes
+import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
+
+
+// Init App
 const app = express ()
 const port = 8080
 
-app.use(express.json())
+// Config
+dotenv.config()
+
+app.use(express.json())  // Middleware to parse JSON request bodies
+app.use(routes)
 
 mongoose.connect(process.env.MONGO_URI).then(() =>{
-    console.log("Connected to MongoDB");
+    console.log("Connected to MongoDB")
 })
 
 app.get('/', (req,res) => {
